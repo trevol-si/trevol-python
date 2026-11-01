@@ -16,7 +16,7 @@ PROGRAMAS = AQUI / "programas"
 
 
 def test_la_estructura():
-    assert len(OPERACIONES) == 109 and DATOS["lenguajes"] == ["curl", "node", "python"]
+    assert len(OPERACIONES) == 109 and DATOS["lenguajes"][:3] == ["curl", "node", "python"]  # los demás SDK suman los suyos después
     assert sorted(p.stem for p in PROGRAMAS.glob("*.py")) == OPERACIONES
     for op in OPERACIONES:
         assert "Trevol()" in DATOS["fragmentos"][op]["python"] and "TREVOL_API_KEY" in DATOS["fragmentos"][op]["python"]
