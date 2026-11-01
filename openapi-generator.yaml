@@ -1,0 +1,14 @@
+# Configuración de OpenAPI Generator para el SDK de Python (docs/api/43-sdks-y-documentacion.md §2.5).
+# La corre sdks/generar.sh sobre sdks/especificacion/openapi.sdk.enums-abiertos.json (C3: pydantic rechaza el valor nuevo de un
+# enum de lo que la API devuelve y este generador no tiene enumUnknownDefaultCase). Lo generado va a src/trevol/_generado/.
+generatorName: python
+inputSpec: especificacion/openapi.sdk.enums-abiertos.json
+additionalProperties:
+  packageName: trevol._generado
+  projectName: trevol
+  packageVersion: 0.1.0
+  generateSourceCodeOnly: true
+  hideGenerationTimestamp: true
+  sortParamsByRequiredFlag: true
+  library: urllib3
+  disallowAdditionalPropertiesIfNotPresent: false

@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "trevol"
+version = "0.1.0"
+description = "SDK de Python para la API de Trevol: facturación electrónica ante la DIAN (Colombia). Python SDK for the Trevol API."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "Trevol" }]
+keywords = ["trevol", "dian", "factura electronica", "colombia", "nomina electronica", "sdk"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+dependencies = [
+    "urllib3>=2.1.0,<3",
+    "pydantic>=2.5.0,<3",
+    "python-dateutil>=2.8.2",
+    "typing-extensions>=4.7.1",
+    "standardwebhooks==1.1.0",
+]
+
+[project.urls]
+Documentation = "https://platform.trevol.si/docs"
+Repository = "https://github.com/trevol/trevol-python"
+Issues = "https://github.com/trevol/trevol-python/issues"
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.2", "pytest-cov==7.0.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/trevol"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/trevol", "README.md", "LICENSE", "CHANGELOG.md", "GENERADO.md", "pruebas"]
+
+[tool.pytest.ini_options]
+testpaths = ["pruebas"]
+addopts = "-q -p no:cacheprovider"
+markers = ["prism: necesita Prism (sdks/herramientas/prism.sh)"]
