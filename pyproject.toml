@@ -28,13 +28,13 @@ dependencies = [
     "pydantic>=2.5.0,<3",
     "python-dateutil>=2.8.2",
     "typing-extensions>=4.7.1",
-    "standardwebhooks==1.1.0",
+    "standardwebhooks>=1.1.0,<2",
 ]
 
 [project.urls]
 Documentation = "https://platform.trevol.si/docs"
-Repository = "https://github.com/trevol/trevol-python"
-Issues = "https://github.com/trevol/trevol-python/issues"
+Repository = "https://github.com/trevol-si/trevol-python"
+Issues = "https://github.com/trevol-si/trevol-python/issues"
 
 [project.optional-dependencies]
 dev = ["pytest==8.4.2", "pytest-cov==7.0.0"]
