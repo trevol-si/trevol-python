@@ -43,6 +43,7 @@ class Trevol:
         max_retry_after: si `Retry-After` pide esperar más segundos que esto, no se espera: se lanza el error con `retry_after`.
         base_url: por defecto https://api.trevol.si/v1 (para un servidor simulado en las pruebas).
         environment: si se pasa y la llave no coincide, `ConfigurationError` ANTES de llamar.
+        proxy: URL de un proxy HTTP(S) o SOCKS (p. ej. "http://proxy.miempresa.co:3128").
     """
 
     environment: Entorno
@@ -58,6 +59,7 @@ class Trevol:
         max_retry_after: float = 60.0,
         base_url: str = URL_BASE,
         environment: Optional[Entorno] = None,
+        proxy: Optional[str] = None,
         _internos: Optional[dict[str, Callable[..., Any]]] = None,
     ) -> None:
         llave = api_key if api_key is not None else os.environ.get("TREVOL_API_KEY")
@@ -77,7 +79,7 @@ class Trevol:
             user_agent=f"trevol-python/{VERSION} (python {platform.python_version()}; +https://platform.trevol.si/docs)",
             max_reintentos=max_retries, timeout=timeout, max_retry_after=max_retry_after, **extra,
         )
-        cliente = ClienteApi(configuracion(base_url.rstrip("/")), opciones)
+        cliente = ClienteApi(configuracion(base_url.rstrip("/"), proxy), opciones)
         self._cliente = cliente
         self.balance = BalanceApi(cliente)
         self.credit_notes = CreditNotesApi(cliente)

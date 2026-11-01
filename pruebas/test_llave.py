@@ -38,3 +38,8 @@ def test_environment_que_no_coincide_es_configurationerror_antes_de_llamar():
     with pytest.raises(ConfigurationError):
         Trevol(LLAVE_LIVE, environment="test")
     assert Trevol(LLAVE_TEST, environment="test").environment == "test"
+
+
+def test_el_proxy_pasa_a_la_configuracion_generada():
+    assert Trevol(LLAVE_TEST, proxy="http://proxy.miempresa.co:3128")._cliente.configuration.proxy == "http://proxy.miempresa.co:3128"
+    assert Trevol(LLAVE_TEST)._cliente.configuration.proxy is None

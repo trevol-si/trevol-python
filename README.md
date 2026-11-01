@@ -153,6 +153,7 @@ Trevol(
     max_retry_after=60.0,       # segundos
     base_url="https://api.trevol.si/v1",
     environment="test",         # si la llave no coincide: ConfigurationError antes de llamar
+    proxy=None,                 # p. ej. "http://proxy.miempresa.co:3128"
 )
 ```
 

@@ -181,8 +181,10 @@ class ClienteApi(ApiClient):
             self._o.sleep(decision.espera or 0.0)
 
 
-def configuracion(base_url: str) -> Configuration:
+def configuracion(base_url: str, proxy: Optional[str] = None) -> Configuration:
     """La `Configuration` generada, sin los reintentos de urllib3 (el SDK es el único que reintenta: C14)."""
     c = Configuration(host=base_url)
     c.retries = 0
+    if proxy:
+        c.proxy = proxy
     return c
