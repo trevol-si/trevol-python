@@ -1,0 +1,25 @@
+# Publicación del SDK de Python (docs/api/43 §2.13 y §2.14). Escrita, NO activa. Un tag `v*` la dispara; el environment `publicacion` exige la
+# aprobación del dueño. Publica en PyPI con *trusted publishing* (OIDC): sin tokens guardados.
+name: Publicar
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+jobs:
+  pypi:
+    runs-on: ubuntu-latest
+    environment: publicacion
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -e ".[dev]" build && pytest
+      - name: El tag coincide con la versión del paquete
+        run: test "v$(python -c "import tomllib;print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")" = "${GITHUB_REF_NAME}"
+      - run: python -m build
+      - uses: pypa/gh-action-pypi-publish@release/v1
