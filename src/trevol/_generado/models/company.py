@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from trevol._generado.models.company_key import CompanyKey
 from trevol._generado.models.company_numbering import CompanyNumbering
@@ -32,7 +32,7 @@ class Company(BaseModel):
     object: Optional[StrictStr] = Field(default=None, description="Valores conocidos: `company`.")
     id: Optional[StrictStr] = None
     nit: Optional[StrictStr] = None
-    check_digit: Optional[StrictStr] = None
+    check_digit: Optional[StrictInt] = None
     name: Optional[StrictStr] = Field(default=None, description="La razón social.")
     trade_name: Optional[StrictStr] = None
     status: Optional[StrictStr] = Field(default=None, description="Valores conocidos: `enabled`, `not_enabled`.")
