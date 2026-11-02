@@ -10,7 +10,7 @@ readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
-authors = [{ name = "Trevol" }]
+authors = [{ name = "Joshua Montclair (Trevol)" }]
 keywords = ["trevol", "dian", "factura electronica", "colombia", "nomina electronica", "sdk"]
 classifiers = [
     "Development Status :: 3 - Alpha",
